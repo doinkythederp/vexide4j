@@ -1,0 +1,13 @@
+[build]
+target = "./armv7a-vexos-eabi.json"
+
+[target.wasm32-unknown-unknown]
+rustflags = [
+    "-Ctarget-feature=+atomics,+bulk-memory,+mutable-globals",
+    "-Clink-arg=--shared-memory",
+    "-Clink-arg=--export-table",
+]
+
+[unstable]
+build-std = ["core", "compiler_builtins", "alloc"]
+build-std-features = ["compiler-builtins-mem"]
