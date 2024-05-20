@@ -1,4 +1,4 @@
-use std::{fs::remove_dir_all, path::Path, process::Command};
+use std::{env, fs::remove_dir_all, path::PathBuf, process::Command};
 
 use copy_dir::copy_dir;
 fn main() {
@@ -13,11 +13,12 @@ fn main() {
         .expect("Failed to build project");
     assert!(gradlew.success());
 
-    let app_class_path = Path::new("build/classes/java/main");
-    let rt_class_path = Path::new("lib");
-    let out_dir = Path::new("build/classpath");
-    _ = remove_dir_all(out_dir);
-    copy_dir(app_class_path, out_dir).unwrap();
+    let base_dir = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap());
+    let app_class_path = base_dir.join("build/classes/java/main");
+    let rt_class_path = base_dir.join("lib");
+    let out_dir = base_dir.join("build/classpath");
+    _ = remove_dir_all(&out_dir);
+    copy_dir(app_class_path, &out_dir).unwrap();
 
     let dependencies = std::fs::read_to_string("rt_dependencies.txt").unwrap();
     for dep in dependencies.lines() {
