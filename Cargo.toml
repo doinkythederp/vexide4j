@@ -11,3 +11,8 @@ vexide = "0.2.0"
 rjvm_vm = { git = "https://github.com/doinkythederp/rjvm.git", branch = "feat/no-std" }
 vex-sdk = "0.14.0"
 unix_path = { version = "1.0.1", default-features = false, features = ["alloc"] }
+log = "0.4.21"
+include_dir = { git = "https://github.com/doinkythederp/include_dir.git", version = "0.7.3", default-features = false }
+
+[build-dependencies]
+copy_dir = "0.1.3"
