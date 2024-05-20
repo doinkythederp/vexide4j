@@ -26,6 +26,7 @@ fn main() {
         }
         let dep_path = rt_class_path.join(dep);
         let dep_out = out_dir.join(dep);
+        println!("Copying runtime dependency {:?} to {:?}", dep_path, dep_out);
         std::fs::create_dir_all(dep_out.parent().unwrap()).unwrap();
         copy_dir(dep_path, dep_out).unwrap();
     }
