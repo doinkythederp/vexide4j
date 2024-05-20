@@ -16,7 +16,7 @@ fn main() {
     let app_class_path = Path::new("build/classes/java/main");
     let rt_class_path = Path::new("lib");
     let out_dir = Path::new("build/classpath");
-    remove_dir_all(out_dir).unwrap();
+    _ = remove_dir_all(out_dir);
     copy_dir(app_class_path, out_dir).unwrap();
 
     let dependencies = std::fs::read_to_string("rt_dependencies.txt").unwrap();

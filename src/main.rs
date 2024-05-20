@@ -52,7 +52,7 @@ impl Log for VexideLogger {
                 .collect::<Vec<_>>();
             let mut screen = screen.lock().await;
             for string in strings {
-                let mut text = Text::new(
+                let text = Text::new(
                     &string,
                     TextSize::Small,
                     (0, Screen::VERTICAL_RESOLUTION - 50),
